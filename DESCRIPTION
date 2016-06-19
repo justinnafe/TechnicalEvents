@@ -1,0 +1,13 @@
+Package: TechnicalEvents
+Type: Package
+Title: Stock Event Tools
+Version: 0.1.0
+Date: 2015-06-28
+Author: Justin Nafe
+Maintainer: Justin Nafe <justinjnafe@gmail.com>
+Description: Tools for Stock Events. The user can define common technical
+    events, get summary information about those events, forecast from those events,
+    and plot charts of stock movement from those charts.
+License: What license is it under?
+LazyData: TRUE
+RoxygenNote: 5.0.1
