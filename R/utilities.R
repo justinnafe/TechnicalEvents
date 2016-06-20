@@ -1,6 +1,5 @@
 library(quantmod)
 
-
 #' Get the daily returns for each column in a data.frame
 #'
 #' @param x A data.frame of one or more columns to get returns for.

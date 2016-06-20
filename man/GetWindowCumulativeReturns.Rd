@@ -8,7 +8,7 @@ after the event.}
 GetWindowCumulativeReturns(x, event, w)
 }
 \arguments{
-\item{x}{A numeric vector within a time series type object.}
+\item{x}{An xts vector of numeric values.}
 }
 \value{
 A time series vector of cumulative returns.

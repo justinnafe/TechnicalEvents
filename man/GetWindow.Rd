@@ -8,7 +8,7 @@ after the event.}
 GetWindow(x, event, w)
 }
 \arguments{
-\item{x}{A vector of values within a time series type object.}
+\item{x}{An xts vector.}
 }
 \value{
 A time series vector of values.
