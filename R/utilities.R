@@ -1,35 +1,5 @@
 library(quantmod)
 
-shiftdown <- function(x, n){
-  # Remove the last, add to the first
-  c(rep(NA, n), x[-(length(x) )])
-}
-
-
-getIncReturns <- function(x, len){
-  result <- rep(0, len)
-  for(index in 2:len){
-    result[index] <- result[index - 1] + x[index]
-  }
-  as.data.frame(result)
-}
-
-trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-
-mergeData <- function(syms, env){
-  initialData <- get(syms[1], env)
-  result <- Ad(initialData)
-  if(length(syms) > 1){
-    for( i in 2:length(syms)){
-      if(!is.na(syms[i])){
-        data <- get(trim(syms[i]), env)
-        result <- merge(result, Ad(data))
-      }
-    }
-  }
-  colnames(result) <- syms[!is.na(syms)]
-  result
-}
 
 #' Get the daily returns for each column in a data.frame
 #'

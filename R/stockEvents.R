@@ -37,14 +37,3 @@ GetEventsForSMACrossOver <- function(x, fastSma = 20, slowSma = 50, type = "buy"
   }
 }
 
-cleanEnv <- function(syms, env){
-  items <- ls(env)
-  for(item in items){
-    if(item %in% syms){
-
-    }
-    else{
-      rm(list=item, envir=env)
-    }
-  }
-}
