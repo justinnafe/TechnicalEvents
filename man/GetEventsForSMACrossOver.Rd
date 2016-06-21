@@ -21,4 +21,10 @@ Logical vector where TRUE is the row that the event occured.
 \description{
 Get events for the SMA crossover technical indicator.
 }
+\examples{
+\dontrun{
+data(YHOO)
+GetEventsForSMACrossOver(Ad(YHOO), 12, 26)
+}
+}
 

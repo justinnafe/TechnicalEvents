@@ -9,6 +9,10 @@ GetWindowCumulativeReturns(x, event, w)
 }
 \arguments{
 \item{x}{An xts vector of numeric values.}
+
+\item{event}{A time based object.}
+
+\item{w}{The number of periods after and including the event.}
 }
 \value{
 A time series vector of cumulative returns.

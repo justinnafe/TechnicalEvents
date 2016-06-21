@@ -7,6 +7,11 @@ library(quantmod)
 #' @param slowSma Number of periods to average over for the slower moving SMA.
 #' @param type buy or sell. Defaults to buy.
 #' @return Logical vector where TRUE is the row that the event occured.
+#' @examples
+#' \dontrun{
+#' data(YHOO)
+#' GetEventsForSMACrossOver(Ad(YHOO), 12, 26)
+#' }
 #' @export
 #' @import quantmod
 

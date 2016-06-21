@@ -22,6 +22,8 @@ GetDailyReturnsPerColumn <- function(x){
 #' after the event.
 #'
 #' @param x An xts vector.
+#' @param event A time based object.
+#' @param w The number of periods after and including the event.
 #' @return A time series vector of values.
 #' @export
 
@@ -40,6 +42,8 @@ GetWindow <- function(x, event, w){
 #' after the event.
 #'
 #' @param x An xts vector of numeric values.
+#' @param event A time based object.
+#' @param w The number of periods after and including the event.
 #' @return A time series vector of cumulative returns.
 #' @export
 
@@ -72,7 +76,8 @@ GetReturnPercent <- function(x){
 
 #' Get the value of a time series vector by date.
 #'
-#' @param x A vector with named rows as character dates
+#' @param x A time based object.
+#' @param ind An xts vector.
 #' @return A value for that date
 #' @export
 

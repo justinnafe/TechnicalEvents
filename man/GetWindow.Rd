@@ -9,6 +9,10 @@ GetWindow(x, event, w)
 }
 \arguments{
 \item{x}{An xts vector.}
+
+\item{event}{A time based object.}
+
+\item{w}{The number of periods after and including the event.}
 }
 \value{
 A time series vector of values.

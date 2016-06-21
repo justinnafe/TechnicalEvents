@@ -7,7 +7,9 @@
 GetValueByDate(x, ind)
 }
 \arguments{
-\item{x}{A vector with named rows as character dates}
+\item{x}{A time based object.}
+
+\item{ind}{An xts vector.}
 }
 \value{
 A value for that date
