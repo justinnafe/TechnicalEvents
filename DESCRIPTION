@@ -1,14 +1,15 @@
 Package: TechnicalEvents
 Type: Package
-Title: Stock Event Tools
-Version: 0.1.0
+Title: Technical Events
+Version: 0.2.0
 Date: 2015-06-28
 Author: Justin Nafe
 Maintainer: Justin Nafe <justinjnafe@gmail.com>
-Description: Tools for Stock Events. The user can define common technical
-    events, get summary information about those events, forecast from those events,
-    and plot charts of stock movement from those charts.
-License: What license is it under?
+Description: Tools for retrieving technical events, such as stock market
+    technical indicators. The user can define common technical
+    events and retrieve logical vectors indicating when they happened and extract information
+    from within the original dataset.
+License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Suggests: testthat
