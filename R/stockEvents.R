@@ -1,4 +1,4 @@
-library(quantmod)
+
 
 #' Get events for the SMA crossover technical indicator.
 #'
@@ -13,10 +13,13 @@ library(quantmod)
 #' GetSMACrossOverEvents(Ad(YHOO), 12, 26)
 #' }
 #' @export
-#' @import quantmod
+#' @import TTR
+#' @import xts
+#' @import zoo
 
 GetSMACrossOverEvents <- function(x, fastSma = 20, slowSma = 50, type = "buy"){
-  stopifnot(is.numeric(fastSma), is.numeric(slowSma), slowSma > fastSma, ncol(x) == 1)
+  stopifnot(is.xts(x), is.numeric(fastSma), is.numeric(slowSma),
+            slowSma > fastSma, ncol(x) == 1)
 
   if(nrow(x) > slowSma){
     smaFast <- SMA(x[,1], n=fastSma)
@@ -25,6 +28,8 @@ GetSMACrossOverEvents <- function(x, fastSma = 20, slowSma = 50, type = "buy"){
     prevFast <- lag(smaFast, 1)
     prevSlow <- lag(smaSlow, 1)
 
+    # Fix issue where FALSE & NA = FALSE
+    smaSlow <- ifelse(is.na(prevSlow), NA, smaSlow)
     if(type == "buy"){
       events <- smaFast <= smaSlow & prevFast > prevSlow
       index(events) <- index(x)
@@ -32,6 +37,53 @@ GetSMACrossOverEvents <- function(x, fastSma = 20, slowSma = 50, type = "buy"){
     } else{
       if(type == "sell"){
         events <- smaFast >= smaSlow & prevFast < prevSlow
+        index(events) <- index(x)
+        events
+      }
+    }
+
+  } else{
+
+  }
+}
+
+#' Get events for the EMA crossover technical indicator.
+#'
+#' @param x A single column xts or matrix series with numeric values.
+#' @param fastEma Number of periods to average over for the faster moving EMA.
+#' @param slowEma Number of periods to average over for the slower moving EMA.
+#' @param type buy or sell. Defaults to buy.
+#' @return Logical vector where TRUE is the row that the event occured.
+#' @examples
+#' \dontrun{
+#' data(YHOO)
+#' GetEMACrossOverEvents(Ad(YHOO), 12, 26)
+#' }
+#' @export
+#' @import TTR
+#' @import xts
+#' @import zoo
+
+GetEMACrossOverEvents <- function(x, fastEma = 12, slowEma = 26, type = "buy"){
+  stopifnot(is.xts(x), is.numeric(fastEma), is.numeric(slowEma),
+            slowEma > fastEma, ncol(x) == 1)
+
+  if(nrow(x) > slowEma){
+    emaFast <- EMA(x[,1], n=fastEma)
+    emaSlow <- EMA(x[,1], n=slowEma)
+
+    prevFast <- lag(emaFast, 1)
+    prevSlow <- lag(emaSlow, 1)
+
+    # Fix issue where FALSE & NA = FALSE
+    emaSlow <- ifelse(is.na(prevSlow), NA, emaSlow)
+    if(type == "buy"){
+      events <- emaFast <= emaSlow & prevFast > prevSlow
+      index(events) <- index(x)
+      events
+    } else{
+      if(type == "sell"){
+        events <- emaFast >= emaSlow & prevFast < prevSlow
         index(events) <- index(x)
         events
       }
@@ -62,6 +114,7 @@ GetSMACrossOverEvents <- function(x, fastSma = 20, slowSma = 50, type = "buy"){
 #' sum(GetPercentageChangeEvents(Ad(YHOO), 3))
 #' }
 #' @export
+#' @import xts
 
 GetPercentageChangeEvents <- function(x, percentChange = -0.03){
   stopifnot(is.xts(x), is.numeric(percentChange), percentChange <= 100,

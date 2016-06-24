@@ -11,4 +11,4 @@ does after events occur.
 
 ##Examples
 
-Examples coming soon to <a href="http://justinsighting.com">JustInsighting.com</a>
+Examples can be found at <a href="http://justinsighting.com/tag/technical-events/">JustInsighting.com</a>
